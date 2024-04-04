@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const ExpandingCircleAnimation = ({ bgColor, newbgColor, animate, onAnimationEnd }) => {
+const ExpandingCircleAnimation = ({ bgColor, showCircle, newbgColor, animate, onAnimationEnd }) => {
   // Ref for the circle element
   const circleRef = useRef(null);
   const bgRef = useRef(null);
@@ -58,7 +58,7 @@ const ExpandingCircleAnimation = ({ bgColor, newbgColor, animate, onAnimationEnd
 
   return (
     <div style={styles.container} ref={bgRef}>
-      <div style={styles.circle} ref={circleRef}></div>
+      {showCircle && <div style={styles.circle} ref={circleRef}></div>}
     </div>
   );
 };

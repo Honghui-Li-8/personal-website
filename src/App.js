@@ -11,7 +11,7 @@ import ExpandingCircleAnimation from './components/ExpandingCircleAnimation'; //
 function App() {
   const [activeTab, setActiveTab] = useState('AboutMe');
   const [bgColor, setBgColor] = React.useState("#add8e6");
-  const [newbgColor, setNewBgColor] = React.useState("#add8e6");
+  const [showCircle, setShowCircle] = React.useState(false);
   // const [showContent, setShowContent] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
 
@@ -37,12 +37,14 @@ function App() {
   const triggerAnimation = () => {
     // Increment the key to force re-render and thus restart the animation
     setAnimationKey(prevKey => prevKey + 1);
+    setShowCircle(true);
     console.log('Animation Triger!');
   };
 
   const onBGTransationEnd = () => {
     console.log('Animation completed!');
     setBgColor(getNewColor());
+    setShowCircle(false);
     console.log('new bg');
     console.log(bgColor);
   };
@@ -66,8 +68,8 @@ function App() {
     <div className="App">
       <NavBar setActiveTab={setActiveTab} />
       
-      <ExpandingCircleAnimation key={animationKey} bgColor={bgColor} newbgColor={getNewColor()} animate={true} onAnimationEnd={onBGTransationEnd}/>
-      <button onClick={triggerAnimation} style={{ position: 'fixed', zIndex: 10, top: '20px', left: '20px' }}>
+      <ExpandingCircleAnimation key={animationKey} bgColor={bgColor} showCircle={showCircle} newbgColor={getNewColor()} animate={true} onAnimationEnd={onBGTransationEnd}/>
+      <button onClick={triggerAnimation} style={{ position: 'fixed', zIndex: 10, top: '60px', left: '40px' }}>
         Trigger Animation
       </button>
 
