@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import NavBar from './components/NavBar';
@@ -14,6 +14,10 @@ function App() {
   const [showCircle, setShowCircle] = React.useState(false);
   // const [showContent, setShowContent] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
+
+  // useEffect(()=> {
+
+  // }, activeTab)
 
   const pageTransitions = {
     initial: { opacity: 0, y: 30 },
@@ -36,7 +40,7 @@ function App() {
 
   const triggerAnimation = () => {
     // Increment the key to force re-render and thus restart the animation
-    setAnimationKey(prevKey => prevKey + 1);
+    // setAnimationKey(prevKey => prevKey + 1);
     setShowCircle(true);
     console.log('Animation Triger!');
   };
@@ -68,7 +72,7 @@ function App() {
     <div className="App">
       <NavBar setActiveTab={setActiveTab} />
       
-      <ExpandingCircleAnimation key={animationKey} bgColor={bgColor} showCircle={showCircle} newbgColor={getNewColor()} animate={true} onAnimationEnd={onBGTransationEnd}/>
+      <ExpandingCircleAnimation bgColor={bgColor} showCircle={showCircle} newbgColor={getNewColor()} animate={true} onAnimationEnd={onBGTransationEnd}/>
       <button onClick={triggerAnimation} style={{ position: 'fixed', zIndex: 10, top: '60px', left: '40px' }}>
         Trigger Animation
       </button>
