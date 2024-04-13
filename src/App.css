@@ -28,9 +28,3 @@
 .tab-content {
   padding: 20px;
 }
-
-@keyframes expand {
-  to {
-    transform: scale(100);
-  }
-}

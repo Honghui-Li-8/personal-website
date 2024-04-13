@@ -1,9 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import "./BackGround.css";
 
-const ExpandingCircleAnimation = ({ bgColor, showCircle, newbgColor, animate, onAnimationEnd }) => {
+const BackGround = ({ showTransation, bgColor, newbgColor, animate = true, onAnimationEnd }) => {
+  const [circleSize, setCircleSize] = useState({ width: 20, height: 20 });
   // Ref for the circle element
   const circleRef = useRef(null);
   const bgRef = useRef(null);
+  
+  const rescaleToFitScreen = () => {
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
+
+    // prevent extrme screen scale
+    if (viewportHeight > viewportWidth * 1.5) {
+      // to offset the 1707/898 pre defined ratio
+      viewportWidth = viewportHeight * 1.5;
+    }
+  
+    const newWidth = viewportWidth / 1707 * 20;
+    const newHeight = viewportHeight / 898 * 20;
+
+    setCircleSize({ width: newWidth, height: newHeight })
+  }
+
+  // prevent too frequent update on windows resize
+  const debounce = (func, delay) => {
+    let debounceTimer;
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+  }
+
+  useEffect(() => {
+    rescaleToFitScreen();
+  }, [])
 
   useEffect(() => {
     const circle = circleRef.current;
@@ -47,8 +80,8 @@ const ExpandingCircleAnimation = ({ bgColor, showCircle, newbgColor, animate, on
       zIndex: -1, // Stay behind other content
     },
     circle: {
-      width: '20px',
-      height: '20px',
+      width: `${circleSize.width}px`,
+      height: `${circleSize.height}px`,
       borderRadius: '50%',
       backgroundColor: newbgColor, // Use the bgColor prop for background color
       transform: 'scale(0)',
@@ -56,11 +89,13 @@ const ExpandingCircleAnimation = ({ bgColor, showCircle, newbgColor, animate, on
     }
   };
 
+  window.addEventListener('resize', debounce(rescaleToFitScreen, 250));
+
   return (
     <div style={styles.container} ref={bgRef}>
-      {showCircle && <div style={styles.circle} ref={circleRef}></div>}
+      {showTransation && <div style={styles.circle} ref={circleRef}></div>}
     </div>
   );
 };
 
-export default ExpandingCircleAnimation;
+export default BackGround;
