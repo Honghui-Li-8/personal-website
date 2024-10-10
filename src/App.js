@@ -8,7 +8,7 @@ import Contact from './components/Tabs/Contact';
 import Projects from './components/Tabs/Projects';
 import BackGround from './components/BackGround/BackGround'; // Adjust the path as necessary
 
-const yellow = '#e9ff70';
+const lightBlue = '#f4f9fc';
 const blue = '#add8e6';
 const green = '#ccff99';
 const orange = '#ffcc99';
@@ -32,7 +32,7 @@ function App() {
   useEffect(()=> {
     switch (activeTab) {
       case 'Home':
-        setNewbgColor(yellow);
+        setNewbgColor(lightBlue);
         break;
       case 'AboutMe':
         setNewbgColor(blue);
