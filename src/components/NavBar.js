@@ -3,6 +3,11 @@ import React from 'react';
 const NavBar = ({ setActiveTab }) => {
   return (
     <nav className="nav-bar">
+    {/* Button for "About Me" tab */}
+    <button onClick={() => setActiveTab('Home')} className="nav-button">
+      Home
+    </button>
+
       {/* Button for "About Me" tab */}
       <button onClick={() => setActiveTab('AboutMe')} className="nav-button">
         About Me
