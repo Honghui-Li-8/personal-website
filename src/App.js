@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import NavBar from './components/NavBar';
-import Home from './components/Tabs/Home';
-import AboutMe from './components/Tabs/AboutMe';
-import Contact from './components/Tabs/Contact';
-import Projects from './components/Tabs/Projects';
+import Home from './Tabs/Home';
+import AboutMe from './Tabs/AboutMe';
+import Contact from './Tabs/Contact';
+import Projects from './Tabs/Projects';
 import BackGround from './components/BackGround/BackGround'; // Adjust the path as necessary
 
 const lightBlue = '#f4f9fc';
