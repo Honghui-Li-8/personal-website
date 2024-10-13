@@ -26,7 +26,7 @@ function App() {
 
   // fist page after page load
   useEffect(() => {
-    setActiveTab('AboutMe');
+    setActiveTab('Home');
   }, [])
 
   useEffect(()=> {
